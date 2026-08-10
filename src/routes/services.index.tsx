@@ -23,7 +23,7 @@ function ServicesIndex() {
         eyebrow="Services"
         title="Everything that puts your brand in front of a real person"
         sub="Five core disciplines, delivered end to end: survey, design, fabrication, print, installation and service."
-        image={SERVICES[0].image}
+        image={SERVICES[0]!.image}
       />
 
       <Section className="py-8 md:py-12">

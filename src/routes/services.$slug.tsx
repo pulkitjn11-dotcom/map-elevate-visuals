@@ -6,7 +6,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { SERVICES } from "@/lib/site";
+import { SERVICES, type Service } from "@/lib/site";
 import { breadcrumbLd, pageMeta } from "@/lib/seo";
 import { Reveal } from "@/components/site/Reveal";
 import { CTASection, Section, SectionHeading } from "@/components/site/Section";
@@ -55,7 +55,7 @@ const PROCESS = [
 ];
 
 function ServicePage() {
-  const { service } = Route.useLoaderData();
+  const { service } = Route.useLoaderData() as { service: Service };
 
   return (
     <>
