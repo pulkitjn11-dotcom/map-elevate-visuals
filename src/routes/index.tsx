@@ -58,7 +58,7 @@ function Home() {
       {/* HERO */}
       <div ref={ref} className="relative overflow-hidden pt-32 pb-16 md:pt-40 md:pb-24">
         <motion.div
-          style={reduce ? undefined : { y, opacity: fade }}
+          style={reduce ? {} : { y, opacity: fade }}
           className="absolute inset-0 -z-10"
         >
           <img
