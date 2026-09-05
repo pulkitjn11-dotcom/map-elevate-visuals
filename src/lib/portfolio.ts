@@ -63,7 +63,9 @@ export function img(
   alt?: string,
 ): PortfolioImage {
   const folder = PORTFOLIO_CATEGORIES.find((c) => c.id === category)!.folder;
-  return { src: `/portfolio/${folder}/${file}`, width, height, alt };
+  const image: PortfolioImage = { src: `/portfolio/${folder}/${file}`, width, height };
+  if (alt) image.alt = alt;
+  return image;
 }
 
 export const categoryLabel = (id: PortfolioCategoryId) =>
