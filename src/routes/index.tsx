@@ -1,6 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useState } from "react";
+import { FEATURED_PROJECTS, type PortfolioProject } from "@/lib/portfolio";
+import { ProjectCard } from "@/components/portfolio/ProjectCard";
+import { ProjectDetail } from "@/components/portfolio/ProjectDetail";
 import {
   ArrowRight,
   BadgeCheck,
@@ -15,7 +18,7 @@ import {
   Zap,
 } from "lucide-react";
 import hero from "@/assets/hero-signage.jpg";
-import { COMPANY, SERVICES, INDUSTRIES, PROJECTS, TESTIMONIALS, IMAGES } from "@/lib/site";
+import { COMPANY, SERVICES, INDUSTRIES, TESTIMONIALS, IMAGES } from "@/lib/site";
 import { pageMeta } from "@/lib/seo";
 import { Reveal } from "@/components/site/Reveal";
 import { Counter } from "@/components/site/Counter";
@@ -48,6 +51,7 @@ const WHY = [
 
 function Home() {
   const ref = useRef<HTMLDivElement>(null);
+  const [featured, setFeatured] = useState<PortfolioProject | null>(null);
   const reduce = useReducedMotion();
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
   const y = useTransform(scrollYProgress, [0, 1], ["0%", "14%"]);
@@ -83,7 +87,7 @@ function Home() {
           <Reveal>
             <span className="inline-flex items-center gap-2 rounded-full border border-border bg-surface/60 px-4 py-1.5 text-xs text-muted-foreground backdrop-blur">
               <span className="size-1.5 rounded-full bg-accent" aria-hidden />
-              Offline branding & advertising · Jaipur since 2013
+              Brand Visibility Solutions Company · Jaipur since 2013
             </span>
           </Reveal>
           <Reveal delay={0.08}>
@@ -250,12 +254,13 @@ function Home() {
         </Reveal>
       </Section>
 
-      {/* PORTFOLIO PREVIEW */}
-      <Section>
+      {/* FEATURED PROJECTS */}
+      <Section id="featured-projects">
         <div className="flex flex-wrap items-end justify-between gap-6">
           <SectionHeading
-            eyebrow="Selected work"
-            title="Projects that changed how a place is seen"
+            eyebrow="Featured projects"
+            title="Selected work across six branding categories"
+            sub="Real photographs from MAP's archive are being added here — slots marked as pending are placeholders, not stock imagery."
           />
           <Reveal>
             <Link
@@ -266,30 +271,14 @@ function Home() {
             </Link>
           </Reveal>
         </div>
-        <div className="mt-12 grid gap-4 md:grid-cols-3">
-          {PROJECTS.slice(0, 6).map((p, i) => (
+        <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {FEATURED_PROJECTS.slice(0, 6).map((p, i) => (
             <Reveal key={p.id} delay={i * 0.05}>
-              <Link
-                to="/portfolio"
-                className="group relative block aspect-4/3 overflow-hidden rounded-[20px] border border-border"
-              >
-                <img
-                  src={p.image}
-                  alt={p.name}
-                  loading="lazy"
-                  className="size-full object-cover transition-transform duration-700 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-transparent opacity-90" />
-                <div className="absolute inset-x-0 bottom-0 p-5">
-                  <span className="rounded-full border border-border bg-background/70 px-3 py-1 text-[11px] uppercase tracking-wider text-muted-foreground backdrop-blur">
-                    {p.category}
-                  </span>
-                  <h3 className="mt-3 font-display text-lg font-semibold">{p.name}</h3>
-                </div>
-              </Link>
+              <ProjectCard project={p} index={i} animate={false} onOpen={setFeatured} />
             </Reveal>
           ))}
         </div>
+        <ProjectDetail project={featured} onClose={() => setFeatured(null)} />
       </Section>
 
       {/* WHY MAP */}
