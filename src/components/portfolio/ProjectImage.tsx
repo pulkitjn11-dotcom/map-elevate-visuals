@@ -62,13 +62,16 @@ export function PlaceholderTile({
     <div
       className={cn(
         "relative grid w-full place-items-center overflow-hidden bg-surface-2 text-center",
+        "aspect-[4/3] sm:aspect-[var(--tile-ratio)]",
         className,
       )}
-      style={{
-        aspectRatio: ratio,
-        backgroundImage:
-          "repeating-linear-gradient(135deg, transparent 0 14px, color-mix(in oklab, var(--border) 60%, transparent) 14px 15px)",
-      }}
+      style={
+        {
+          "--tile-ratio": ratio,
+          backgroundImage:
+            "repeating-linear-gradient(135deg, transparent 0 14px, color-mix(in oklab, var(--border) 60%, transparent) 14px 15px)",
+        } as React.CSSProperties
+      }
     >
       <div className="px-6">
         <span className="mx-auto grid size-12 place-items-center rounded-2xl border border-dashed border-primary/50 bg-primary/10">
