@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { Link, useRouterState } from "@tanstack/react-router";
-import { Menu, X, Phone, Sparkles } from "lucide-react";
+import { Menu, X, Phone } from "lucide-react";
 import { NAV_LINKS, COMPANY } from "@/lib/site";
 import { cn } from "@/lib/utils";
+import mapLogo from "@/assets/map-logo.png.asset.json";
 
 export function Navbar() {
   const [open, setOpen] = useState(false);
@@ -25,16 +26,14 @@ export function Navbar() {
       )}
     >
       <nav className="container-map flex h-18 items-center justify-between py-4" aria-label="Main">
-        <Link to="/" className="group flex items-center gap-3">
-          <span className="grid size-10 place-items-center rounded-xl bg-primary/15 ring-1 ring-primary/40 transition-colors group-hover:bg-primary/25">
-            <Sparkles className="size-5 text-primary" aria-hidden />
-          </span>
-          <span className="leading-tight">
-            <span className="block font-display text-lg font-bold tracking-tight">MAP</span>
-            <span className="block text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
-              Advertising
-            </span>
-          </span>
+        <Link to="/" className="group flex items-center" aria-label="MAP Advertising home">
+          <img
+            src={mapLogo.url}
+            alt="MAP Advertising"
+            width={238}
+            height={93}
+            className="h-12 w-auto object-contain transition-opacity group-hover:opacity-90"
+          />
         </Link>
 
         <ul className="hidden items-center gap-1 lg:flex">

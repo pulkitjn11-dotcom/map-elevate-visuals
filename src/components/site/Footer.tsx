@@ -1,18 +1,21 @@
 import { Link } from "@tanstack/react-router";
-import { Mail, MapPin, Phone, MessageCircle, Sparkles } from "lucide-react";
+import { Mail, MapPin, Phone, MessageCircle } from "lucide-react";
 import { COMPANY, SERVICES, NAV_LINKS } from "@/lib/site";
+import mapLogo from "@/assets/map-logo.png.asset.json";
 
 export function Footer() {
   return (
     <footer className="mt-24 border-t border-border bg-surface/40">
       <div className="container-map grid gap-12 py-16 md:grid-cols-2 lg:grid-cols-4">
         <div>
-          <div className="flex items-center gap-3">
-            <span className="grid size-10 place-items-center rounded-xl bg-primary/15 ring-1 ring-primary/40">
-              <Sparkles className="size-5 text-primary" aria-hidden />
-            </span>
-            <span className="font-display text-lg font-bold">MAP Advertising</span>
-          </div>
+          <img
+            src={mapLogo.url}
+            alt="MAP Advertising"
+            width={238}
+            height={93}
+            loading="lazy"
+            className="h-14 w-auto object-contain"
+          />
           <p className="mt-4 max-w-xs text-sm leading-relaxed text-muted-foreground">
             Media of Advertising & Publicity — an offline branding and advertising company in
             Jaipur delivering signage, print and outdoor media since 2013.
