@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { ImageIcon } from "lucide-react";
 import type { PortfolioImage, PortfolioProject } from "@/lib/portfolio";
 import { categoryLabel } from "@/lib/portfolio";
@@ -22,7 +21,6 @@ export function ProjectImage({
   sizes?: string;
   priority?: boolean;
 }) {
-  const [loaded, setLoaded] = useState(false);
   return (
     <div
       className={cn("relative w-full overflow-hidden bg-surface-2", className)}
@@ -37,10 +35,8 @@ export function ProjectImage({
         height={image.height}
         loading={priority ? "eager" : "lazy"}
         decoding="async"
-        onLoad={() => setLoaded(true)}
         className={cn(
-          "absolute inset-0 size-full object-cover transition-opacity duration-500",
-          loaded ? "opacity-100" : "opacity-0",
+          "absolute inset-0 size-full object-cover",
           imgClassName,
         )}
       />
